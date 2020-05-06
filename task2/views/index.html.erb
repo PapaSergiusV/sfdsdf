@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+  <title>CSRF lab</title>
+</head>
+
+<body>
+  <h1>CSRF lab</h1>
+  <div class="wrapper">
+    <div>
+      <form action="/write_form1" method="POST">
+        <p>Form 1 Secured</p>
+        <input type="text" name="field1" />
+        <input type="text" name="field2" />
+        <input hidden name="token" value='<%= data[:token] %>' />
+        <button type="submit">submit</button>
+      </form>
+      <form action="/write_form2" method="POST">
+        <p>Form 2 Unsecured</p>
+        <input type="text" name="field1" />
+        <input type="text" name="field2" />
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    <div>
+      <div>
+        <p>1st form data:</p>
+        <%= print data[:secured][:field1] %>,
+        <%= print data[:secured][:field2] %>
+      </div>
+      <div>
+        <p>2nd form data:</p>
+        <%= print data[:unsecured][:field1] %>,
+        <%= print data[:unsecured][:field2] %>
+      </div>
+    </div>
+    <div>
+      <% if data[:token].empty? %>
+        <a href="/set_cookie">Set cookie</a>
+      <% else %>
+        <p>Cookie installed</p>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <a class="down" href="/result">see result</a>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+  <title>XSS</title>
+</head>
+
+<body>
+  <h1>Write XSS:</h1>
+  <div class="wrapper">
+    <form action="/write_text" method="POST">
+      <input type="text" name="text" />
+      <button type="submit">submit</button>
+    </form>
+  </div>
+  <div>
+    <a class="down" href="/result">see result</a>
+  </div>
+</body>
+
+</html>
